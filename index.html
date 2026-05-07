@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HLA2106: Word Puns</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            /* 改為允許上下滑動，防止食字 */
+            overflow-x: hidden;
+            overflow-y: auto;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Emojis Animation */
+        .emoji-bg {
+            position: fixed; /* 改為 fixed 等 scroll 嗰陣背景唔會斷 */
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .floating-emoji {
+            position: absolute;
+            bottom: -10%;
+            font-size: 2rem;
+            animation: floatUp linear infinite;
+            opacity: 0.3; 
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* --- Smooth Slide Transitions --- */
+        .slide { 
+            grid-area: 1 / 1; 
+            opacity: 0; 
+            visibility: hidden; 
+            transform: translateY(40px) scale(0.95); 
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            width: 100%;
+        }
+        .slide.active { 
+            opacity: 1; 
+            visibility: visible; 
+            transform: translateY(0) scale(1); 
+            z-index: 10; 
+        }
+
+        /* Reveal Animation - 增加 max-height 防止食字 */
+        .reveal-content { max-height: 0; overflow: hidden; opacity: 0; transition: all 0.5s ease-in-out; }
+        .reveal-content.show { max-height: 800px; opacity: 1; margin-top: 1rem; padding-bottom: 1.5rem; }
+    </style>
+</head>
+<body class="min-h-screen w-screen flex flex-col relative">
+
+    <!-- Floating Background Emojis -->
+    <div class="emoji-bg" id="emoji-container"></div>
+
+    <!-- Header / Progress -->
+    <header class="relative z-20 p-4 flex justify-between items-center text-white font-bold drop-shadow-md sticky top-0">
+        <div class="text-lg md:text-xl">🎓 HLA2106</div>
+        <div class="bg-white/20 px-4 py-1 rounded-full backdrop-blur-sm">
+            Slide <span id="current-slide">1</span> / <span id="total-slides">15</span>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow relative z-10 grid place-items-center p-4 md:p-8 w-full max-w-5xl mx-auto">
+        
+        <!-- Slide 1: Landing Page -->
+        <div class="slide active flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full transform transition hover:scale-105 duration-300">
+                <h2 class="text-2xl md:text-3xl font-semibold text-indigo-600 mb-2 tracking-wider uppercase">HLA2106: Workplace Writing II</h2>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 drop-shadow-sm">Unit 2: ProTips</h1>
+                <div class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-3xl md:text-5xl font-black px-8 py-4 rounded-2xl shadow-lg mb-8 transform -rotate-2">
+                    ✨ WORD PUNS ✨
+                </div>
+                <p class="text-gray-600 text-lg md:text-xl mb-8 font-medium">Get ready to master the art of wordplay in advertising!</p>
+                <button onclick="nextSlide()" class="bg-gray-900 hover:bg-gray-700 text-white text-xl font-bold py-4 px-10 rounded-full shadow-2xl transition-all hover:scale-110 animate-bounce">
+                    Let's Go! 🚀
+                </button>
+            </div>
+        </div>
+
+        <!-- Slide 2: Definition & Mission -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-8 md:p-12 w-full">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mb-6">What is a PUN? 🤔</h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed font-medium">
+                    A joke exploiting the different possible meanings of a word or the fact that there are words which sound alike but have different meanings.
+                </p>
+                <div class="bg-indigo-100 border-l-8 border-indigo-500 p-6 rounded-r-xl text-left shadow-inner">
+                    <h3 class="text-2xl font-bold text-indigo-800 mb-2">🎯 Your Mission:</h3>
+                    <ul class="list-disc list-inside text-lg md:text-xl text-indigo-900 space-y-2">
+                        <li>Look at the advertisement.</li>
+                        <li>Discuss with your classmates: <strong>What is the hidden meaning?</strong></li>
+                        <li>Click "Reveal" to see if you are right!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: TRANSITION TO LEVEL 1 (NEW) -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-blue-500/90 to-cyan-700/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-blue-100">Mission Starts! 🚀</h2>
+                <p class="text-lg md:text-xl mb-8 font-medium text-blue-50">Let's begin with something familiar.</p>
+                <div class="inline-block bg-white text-blue-800 text-3xl md:text-5xl font-black px-8 py-6 rounded-2xl shadow-xl mb-6 transform rotate-1">
+                    Level 1: Cantonese Puns 🇭🇰
+                </div>
+                <p class="text-xl md:text-2xl font-semibold text-white drop-shadow-md">Local Slang & Homophones</p>
+                <p class="text-md text-blue-100 mt-4">Get ready to decode these local ads!</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Chinese Pun 1 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 1: Cantonese Pun</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">IKEA Ice Cream 🍦</h2>
+                <!-- 修正 File 名: img1.jpg.png -->
+                <img src="img1.jpg.png" alt="IKEA Eat my Tofu" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-pink-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Literal Meaning:</strong> "Eat my tofu-flavored ice cream."</p>
+                    <p class="text-lg md:text-xl text-pink-600 font-semibold"><strong>The Pun (Slang):</strong> In Cantonese, "eating someone's tofu" (食豆腐) is slang for taking advantage of someone (flirting/teasing)! 😏</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Chinese Pun 2 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 1: Cantonese Pun</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Cafe de Coral 🍛</h2>
+                <!-- 修正 File 名: img2.jpg.jpg -->
+                <img src="img2.jpg.jpg" alt="Cafe de Coral Baked Pork Chop" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-orange-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Original Idiom:</strong> 唯我獨尊 (Only I am supreme / I am the best).</p>
+                    <p class="text-lg md:text-xl text-orange-600 font-semibold"><strong>The Pun:</strong> "Supreme" (獨尊) sounds exactly like "Baked Pork Chop" (焗豬) in Cantonese! 🐷🔥</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Chinese Pun 3 (IKEA Mattress) -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-blue-100 text-blue-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 1: Cantonese Pun (Trend-jacking)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">IKEA Mattress 🛏️</h2>
+                <!-- 修正 File 名: img9.jpg.jpg -->
+                <img src="img9.jpg.jpg" alt="IKEA Mattress Pun" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-pink-500 to-orange-400 hover:from-pink-600 hover:to-orange-500 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-blue-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>The Catchphrase:</strong> 破・地褥 (Po Dei Juk)</p>
+                    <p class="text-lg md:text-xl text-blue-700 font-semibold mb-2"><strong>The Pun:</strong> "Mattress" (褥) and "Hell" (獄) are exact homophones in Cantonese! Both are pronounced <em>juk6</em>.</p>
+                    <p class="text-md text-gray-600 mt-2">IKEA brilliantly hijacked the title of the hit HK movie "破·地獄" (The Last Dance) to sell their mattresses. A perfect example of trend-jacking! 🎬🛏️</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: TRANSITION TO LEVEL 2 -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-purple-600/90 to-indigo-800/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-purple-200">Level 1 Cleared! 🎉</h2>
+                <p class="text-lg md:text-xl mb-8 font-medium text-purple-100">You survived the Cantonese wordplay.</p>
+                <div class="inline-block bg-white text-purple-800 text-3xl md:text-5xl font-black px-8 py-6 rounded-2xl shadow-xl mb-6 transform rotate-1">
+                    Level 2: Bilingual Puns 🔠
+                </div>
+                <p class="text-xl md:text-2xl font-semibold text-white drop-shadow-md">Cantonese + English = Chinglish Magic! ✨</p>
+                <p class="text-md text-purple-200 mt-4">Time to switch your brain to dual-language mode.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Bilingual Pun 1 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-purple-100 text-purple-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 2: Bilingual Pun (Chinglish)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">McDonald's Rice Burger 🍔</h2>
+                <!-- 修正 File 名: img3.jpg.jpg -->
+                <img src="img3.jpg.jpg" alt="McDonald's Fan-tastic" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-purple-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>English Word:</strong> Fantastic (Amazing).</p>
+                    <p class="text-lg md:text-xl text-purple-700 font-semibold"><strong>The Pun:</strong> "Fan" (飯) means RICE in Cantonese. Combined together, it becomes a <em>Fan-tastic</em> rice burger! 🍚✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Bilingual Pun 2 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-purple-100 text-purple-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 2: Bilingual Pun (Chinglish)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Bakery Egg Tarts 🥧</h2>
+                <!-- 修正 File 名: img4.jpg.jpeg -->
+                <img src="img4.jpg.jpeg" alt="Sou Eggciting" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-purple-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Original Phrase:</strong> So Exciting!</p>
+                    <p class="text-lg md:text-xl text-purple-700 font-semibold"><strong>The Pun:</strong> "So" becomes "Sou" (酥 - flaky pastry). "Exciting" becomes "Egg-citing". Perfect for flaky egg tarts! 🥚🤯</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: TRANSITION TO LEVEL 3 -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-teal-500/90 to-green-700/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-green-100">Level 2 Cleared! 👏</h2>
+                <p class="text-lg md:text-xl mb-8 font-medium text-green-50">You're getting good at this.</p>
+                <!-- 移除了 GB emoji -->
+                <div class="inline-block bg-white text-green-800 text-3xl md:text-5xl font-black px-8 py-6 rounded-2xl shadow-xl mb-6 transform -rotate-1">
+                    Level 3: English Puns 
+                </div>
+                <p class="text-xl md:text-2xl font-semibold text-white drop-shadow-md">Homophones & Double Meanings 🤯</p>
+                <p class="text-md text-green-100 mt-4">Let's see how well you know your English vocabulary!</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: English Pun 1 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Homophones)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Train Station Ad 🚆</h2>
+                <!-- 修正 File 名: img5.jpg.jpg -->
+                <img src="img5.jpg.jpg" alt="Buy ticket. Bye fine." class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-green-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Mechanism:</strong> Homophones (Words that sound exactly the same).</p>
+                    <p class="text-lg md:text-xl text-green-700 font-semibold"><strong>The Pun:</strong> <em>Buy</em> (purchase) and <em>Bye</em> (goodbye). If you <strong>buy</strong> a ticket, you can say <strong>bye</strong> to the penalty fine! 👋🎫</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: English Pun 2 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Double Meaning)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Train Station Ad Part 2 🚆</h2>
+                <!-- 修正 File 名: img6.jpg.jpg -->
+                <img src="img6.jpg.jpg" alt="Don't want to pay? Fine." class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-green-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Mechanism:</strong> One word, two entirely different meanings.</p>
+                    <p class="text-lg md:text-xl text-green-700 font-semibold"><strong>Meaning 1:</strong> Okay, suit yourself. 🤷‍♂️<br><strong>Meaning 2:</strong> A financial penalty. 💸</p>
+                    <p class="text-md text-gray-500 mt-2 italic">"You don't want to pay for a ticket? Okay (Fine), then pay the penalty (Fine)."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: English Pun 3 -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Sound-Alike)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Coffee Mug ☕</h2>
+                <!-- 修正 File 名: img7.jpg.jpg -->
+                <img src="img7.jpg.jpg" alt="Espresso Yourself" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-green-400 to-teal-500 hover:from-green-500 hover:to-teal-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-green-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Original Phrase:</strong> Express yourself. 🗣️</p>
+                    <p class="text-lg md:text-xl text-green-700 font-semibold"><strong>The Pun:</strong> "Express" sounds very similar to "Espresso" (strong coffee). Perfect for a morning coffee mug! ☕✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: TRANSITION TO FINAL BOSS -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-red-600/90 to-orange-600/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-red-100">Level 3 Cleared! 🏆</h2>
+                <p class="text-lg md:text-xl mb-8 font-medium text-red-50">Only one challenge remains...</p>
+                <div class="inline-block bg-white text-red-700 text-3xl md:text-5xl font-black px-8 py-6 rounded-2xl shadow-xl mb-6 transform scale-110 animate-pulse">
+                    ⚠️ FINAL BOSS ⚠️
+                </div>
+                <p class="text-xl md:text-2xl font-semibold text-white drop-shadow-md">The Ultimate Brand Idiom</p>
+                <p class="text-md text-red-100 mt-4">Are you ready to face the classic?</p>
+            </div>
+        </div>
+
+        <!-- Slide 15: Final Boss -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center border-4 border-yellow-400">
+                <span class="bg-yellow-100 text-yellow-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Final Boss: Brand Idiom</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">KitKat Chocolate 🍫</h2>
+                <!-- 修正 File 名: img8.jpg.jpg -->
+                <img src="img8.jpg.jpg" alt="Have a break, have a Kit Kat" class="w-full h-40 md:h-56 object-contain rounded-xl mb-6 bg-white/50 drop-shadow-md">
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-yellow-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Slogan:</strong> Have a break, have a Kit Kat.</p>
+                    <p class="text-lg md:text-xl text-yellow-700 font-semibold mb-2"><strong>The Pun:</strong> The word "Break" has two meanings here!</p>
+                    <ul class="text-lg md:text-xl text-yellow-800 list-none">
+                        <li>1️⃣ Take a rest from work. 🛋️</li>
+                        <li>2️⃣ Snap the chocolate bar into pieces. 💥</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Controls -->
+    <footer class="relative z-20 p-4 md:p-6 flex justify-between items-center w-full max-w-5xl mx-auto sticky bottom-0">
+        <button onclick="prevSlide()" id="prevBtn" class="bg-white/80 hover:bg-white text-gray-800 font-bold py-3 px-6 rounded-full shadow-lg backdrop-blur-md transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+            ◀ <span class="hidden md:inline">Back</span>
+        </button>
+        
+        <div class="text-white font-semibold text-sm md:text-base bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm shadow-inner text-center">
+            🗣️ Discuss with your classmates!
+        </div>
+        
+        <button onclick="nextSlide()" id="nextBtn" class="bg-white/80 hover:bg-white text-gray-800 font-bold py-3 px-6 rounded-full shadow-lg backdrop-blur-md transition flex items-center gap-2">
+            <span class="hidden md:inline">Next</span> ▶
+        </button>
+    </footer>
+
+    <script>
+        // --- Emoji Background Logic ---
+        const emojis = ['😂', '💡', '🤯', '🍔', '☕', '🚂', '🍫', '✨', '👀', '🎯', '🛏️', '🎬'];
+        const container = document.getElementById('emoji-container');
+        
+        function createEmoji() {
+            const el = document.createElement('div');
+            el.classList.add('floating-emoji');
+            el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            
+            el.style.animationDuration = (Math.random() * 10 + 15) + 's'; 
+            el.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+            container.appendChild(el);
+            
+            setTimeout(() => { el.remove(); }, 30000);
+        }
+        
+        setInterval(createEmoji, 1200);
+
+        // --- Slide Navigation Logic ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateButtons() {
+            prevBtn.disabled = currentSlide === 0;
+            if (currentSlide === totalSlides - 1) {
+                nextBtn.innerHTML = '<span class="hidden md:inline">Finish</span> 🎉';
+            } else {
+                nextBtn.innerHTML = '<span class="hidden md:inline">Next</span> ▶';
+            }
+        }
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                // Auto-hide reveal boxes when changing slides
+                const reveal = slide.querySelector('.reveal-content');
+                if(reveal) reveal.classList.remove('show');
+                
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+            document.getElementById('current-slide').innerText = index + 1;
+            updateButtons();
+            // 每次轉 slide 自動 scroll 返去最頂
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function toggleReveal(btn) {
+            const revealContent = btn.nextElementSibling;
+            revealContent.classList.toggle('show');
+            btn.classList.add('scale-95');
+            setTimeout(() => btn.classList.remove('scale-95'), 150);
+            
+            // 當打開答案時，稍微向下 scroll 等啲字睇得清楚啲
+            setTimeout(() => {
+                window.scrollBy({ top: 150, behavior: 'smooth' });
+            }, 300);
+        }
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize
+        updateButtons();
+    </script>
+</body>
+</html>
