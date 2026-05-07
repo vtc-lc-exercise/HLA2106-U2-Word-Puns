@@ -132,7 +132,7 @@
     <header class="relative z-20 p-4 flex justify-between items-center text-white font-bold drop-shadow-md sticky top-0">
         <div class="text-lg md:text-xl">🎓 HLA2106</div>
         <div class="bg-white/20 px-4 py-1 rounded-full backdrop-blur-sm">
-            Slide <span id="current-slide">1</span> / <span id="total-slides">15</span>
+            Slide <span id="current-slide">1</span> / <span id="total-slides">16</span>
         </div>
     </header>
 
@@ -401,6 +401,18 @@
             </div>
         </div>
 
+        <!-- Slide 16: Hurray / Finish (NEW) -->
+        <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
+            <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-yellow-400/90 to-pink-500/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">Hurray! 🎉</h1>
+                <p class="text-xl md:text-2xl mb-8 font-medium text-white drop-shadow-md">You've mastered the art of word puns!</p>
+                <div class="inline-block bg-white text-pink-600 text-2xl md:text-4xl font-black px-8 py-6 rounded-2xl shadow-xl mb-6 transform rotate-2">
+                    Class Dismissed! 🎓
+                </div>
+                <p class="text-lg text-white mt-4">Great job discussing with your classmates.</p>
+            </div>
+        </div>
+
     </main>
 
     <!-- Footer Controls -->
@@ -409,11 +421,12 @@
             ◀ <span class="hidden md:inline">Back</span>
         </button>
         
-        <div class="text-white font-semibold text-sm md:text-base bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm shadow-inner text-center">
+        <!-- Modified Discuss Badge -->
+        <div id="discuss-badge" class="text-white font-semibold text-sm md:text-base bg-black/20 px-4 py-2 rounded-full backdrop-blur-sm shadow-inner text-center transition-opacity duration-300 opacity-0">
             🗣️ Discuss with your classmates!
         </div>
         
-        <button onclick="nextSlide()" id="nextBtn" class="bg-white/80 hover:bg-white text-gray-800 font-bold py-3 px-6 rounded-full shadow-lg backdrop-blur-md transition flex items-center gap-2">
+        <button onclick="nextSlide()" id="nextBtn" class="bg-white/80 hover:bg-white text-gray-800 font-bold py-3 px-6 rounded-full shadow-lg backdrop-blur-md transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
             <span class="hidden md:inline">Next</span> ▶
         </button>
     </footer>
@@ -450,13 +463,23 @@
         const totalSlides = slides.length;
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const discussBadge = document.getElementById('discuss-badge');
 
         function updateButtons() {
             prevBtn.disabled = currentSlide === 0;
-            if (currentSlide === totalSlides - 1) {
+            
+            // Handle Next/Finish/Done button states
+            if (currentSlide === totalSlides - 2) {
+                // On Slide 15 (index 14), show Finish
                 nextBtn.innerHTML = '<span class="hidden md:inline">Finish</span> 🎉';
+                nextBtn.disabled = false;
+            } else if (currentSlide === totalSlides - 1) {
+                // On Slide 16 (index 15), disable button
+                nextBtn.innerHTML = '<span class="hidden md:inline">Done</span> ✅';
+                nextBtn.disabled = true;
             } else {
                 nextBtn.innerHTML = '<span class="hidden md:inline">Next</span> ▶';
+                nextBtn.disabled = false;
             }
         }
 
@@ -472,6 +495,18 @@
                 }
             });
             document.getElementById('current-slide').innerText = index + 1;
+            
+            // --- NEW: Toggle Discuss Badge Visibility ---
+            // Slides 4-6, 8-9, 11-13, 15 (1-based index)
+            const discussSlides = [4, 5, 6, 8, 9, 11, 12, 13, 15];
+            if (discussSlides.includes(index + 1)) {
+                discussBadge.classList.remove('opacity-0');
+                discussBadge.classList.add('opacity-100');
+            } else {
+                discussBadge.classList.remove('opacity-100');
+                discussBadge.classList.add('opacity-0');
+            }
+
             updateButtons();
             // 每次轉 slide 自動 scroll 返去最頂
             window.scrollTo({ top: 0, behavior: 'smooth' });
