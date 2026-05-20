@@ -132,7 +132,7 @@
     <header class="relative z-20 p-4 flex justify-between items-center text-white font-bold drop-shadow-md sticky top-0">
         <div class="text-lg md:text-xl">🎓 HLA2106</div>
         <div class="bg-white/20 px-4 py-1 rounded-full backdrop-blur-sm">
-            Slide <span id="current-slide">1</span> / <span id="total-slides">16</span>
+            Slide <span id="current-slide">1</span> / <span id="total-slides">17</span>
         </div>
     </header>
 
@@ -294,7 +294,27 @@
             </div>
         </div>
 
-        <!-- Slide 10: TRANSITION TO LEVEL 3 -->
+        <!-- Slide 10: Bilingual Pun 3 (NEW - 酥好運) -->
+        <div class="slide flex flex-col items-center w-full">
+            <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
+                <span class="bg-purple-100 text-purple-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 2: Bilingual Pun (Chinglish)</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">VTC Pastry Gift Box 🍍</h2>
+                
+                <!-- 記得將下面嘅 src 轉做你實際嘅圖片檔名，例如 "酥好運.jpg" -->
+                <img src="img10.jpg.jpg" alt="So Lucky Pastry" class="w-full h-40 md:h-56 object-contain rounded-xl mb-2 bg-white/50 drop-shadow-md cursor-pointer hover:scale-105 transition-transform duration-300" onclick="openModal(this.src)">
+                <p class="text-xs text-gray-500 mb-6 font-medium">🔍 Click image to enlarge</p>
+
+                <button onclick="toggleReveal(this)" class="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                    👀 Reveal the Pun!
+                </button>
+                <div class="reveal-content bg-white/90 p-6 rounded-xl w-full text-center border-t-4 border-purple-500 shadow-inner">
+                    <p class="text-lg md:text-xl mb-2"><strong>Original Phrase:</strong> So 好運 (So Lucky!)</p>
+                    <p class="text-lg md:text-xl text-purple-700 font-semibold"><strong>The Pun:</strong> The English word "So" sounds exactly like the Cantonese word for pastry "酥" (Sou). "酥好運" means "So lucky", perfect for a festive pastry gift box! 🍍🍀</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: TRANSITION TO LEVEL 3 -->
         <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
             <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-teal-500/90 to-green-700/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-green-100">Level 2 Cleared! 👏</h2>
@@ -307,7 +327,7 @@
             </div>
         </div>
 
-        <!-- Slide 11: English Pun 1 -->
+        <!-- Slide 12: English Pun 1 -->
         <div class="slide flex flex-col items-center w-full">
             <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
                 <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Homophones)</span>
@@ -326,7 +346,7 @@
             </div>
         </div>
 
-        <!-- Slide 12: English Pun 2 -->
+        <!-- Slide 13: English Pun 2 -->
         <div class="slide flex flex-col items-center w-full">
             <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
                 <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Double Meaning)</span>
@@ -346,7 +366,7 @@
             </div>
         </div>
 
-        <!-- Slide 13: English Pun 3 -->
+        <!-- Slide 14: English Pun 3 -->
         <div class="slide flex flex-col items-center w-full">
             <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center">
                 <span class="bg-green-100 text-green-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Level 3: English (Sound-Alike)</span>
@@ -365,7 +385,7 @@
             </div>
         </div>
 
-        <!-- Slide 14: TRANSITION TO FINAL BOSS -->
+        <!-- Slide 15: TRANSITION TO FINAL BOSS -->
         <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
             <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-red-600/90 to-orange-600/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
                 <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-red-100">Level 3 Cleared! 🏆</h2>
@@ -378,7 +398,7 @@
             </div>
         </div>
 
-        <!-- Slide 15: Final Boss -->
+        <!-- Slide 16: Final Boss -->
         <div class="slide flex flex-col items-center w-full">
             <div class="glass-card p-6 md:p-8 w-full flex flex-col items-center border-4 border-yellow-400">
                 <span class="bg-yellow-100 text-yellow-800 text-sm font-bold px-4 py-1 rounded-full mb-4 uppercase tracking-wide">Final Boss: Brand Idiom</span>
@@ -401,7 +421,7 @@
             </div>
         </div>
 
-        <!-- Slide 16: Hurray / Finish (NEW) -->
+        <!-- Slide 17: Hurray / Finish -->
         <div class="slide flex flex-col items-center justify-center text-center w-full h-full">
             <div class="glass-card p-10 md:p-16 w-full bg-gradient-to-br from-yellow-400/90 to-pink-500/90 text-white border-none transform transition hover:scale-105 duration-300 shadow-2xl">
                 <h1 class="text-5xl md:text-7xl font-extrabold mb-4 drop-shadow-lg">Hurray! 🎉</h1>
@@ -439,7 +459,7 @@
 
     <script>
         // --- Emoji Background Logic ---
-        const emojis = ['😂', '💡', '🤯', '🍔', '☕', '🚂', '🍫', '✨', '👀', '🎯', '🛏️', '🎬'];
+        const emojis = ['😂', '💡', '🤯', '🍔', '☕', '🚂', '🍫', '✨', '👀', '🎯', '🛏️', '🎬', '🍍'];
         const container = document.getElementById('emoji-container');
         
         function createEmoji() {
@@ -470,11 +490,11 @@
             
             // Handle Next/Finish/Done button states
             if (currentSlide === totalSlides - 2) {
-                // On Slide 15 (index 14), show Finish
+                // On Slide 16 (index 15), show Finish
                 nextBtn.innerHTML = '<span class="hidden md:inline">Finish</span> 🎉';
                 nextBtn.disabled = false;
             } else if (currentSlide === totalSlides - 1) {
-                // On Slide 16 (index 15), disable button
+                // On Slide 17 (index 16), disable button
                 nextBtn.innerHTML = '<span class="hidden md:inline">Done</span> ✅';
                 nextBtn.disabled = true;
             } else {
@@ -496,9 +516,9 @@
             });
             document.getElementById('current-slide').innerText = index + 1;
             
-            // --- NEW: Toggle Discuss Badge Visibility ---
-            // Slides 4-6, 8-9, 11-13, 15 (1-based index)
-            const discussSlides = [4, 5, 6, 8, 9, 11, 12, 13, 15];
+            // --- Toggle Discuss Badge Visibility ---
+            // Slides 4-6, 8-10, 12-14, 16 (1-based index)
+            const discussSlides = [4, 5, 6, 8, 9, 10, 12, 13, 14, 16];
             if (discussSlides.includes(index + 1)) {
                 discussBadge.classList.remove('opacity-0');
                 discussBadge.classList.add('opacity-100');
